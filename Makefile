@@ -22,6 +22,8 @@ SRC		= main.c\
 		  color.c\
 		  tricorn.c\
 		  burning_ship.c\
+		  mouse.c\
+		  keys.c\
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

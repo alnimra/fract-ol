@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-void init_frac(char *fractol_type, t_canvas *canvas)
+void	init_frac(char *fractol_type, t_canvas *canvas)
 {
 	if (ft_strcmp(fractol_type, "julia") == 0)
 		canvas->frac_type = 0;
@@ -26,7 +26,7 @@ void init_frac(char *fractol_type, t_canvas *canvas)
 		errorify();
 }
 
-void draw_frac(t_gl *gl, t_canvas *canvas)
+void	draw_frac(t_gl *gl, t_canvas *canvas)
 {
 	if (canvas->frac_type == 0)
 		julia_set_draw(gl, canvas);

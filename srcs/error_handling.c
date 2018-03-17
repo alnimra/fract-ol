@@ -12,8 +12,9 @@
 
 #include "fractol.h"
 
-void errorify()
+void	errorify(void)
 {
-	ft_putstr("Usage: ./fractol [name of fractol]\n Fractol Names:\n1 - julia\n2 - mandel\n");
+	ft_putstr("Usage: ./fractol [name of fractol]\nFractol");
+	ft_putstr("Names:\njulia\nmandel\nburningship\ntricorn\n");
 	exit(1);
 }

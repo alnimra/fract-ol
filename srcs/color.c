@@ -12,16 +12,34 @@
 
 #include "fractol.h"
 
-int generate_random_hex()
+int		generate_random_hex(void)
 {
-int x;
+	int x;
+
 	x = rand() & 0xff;
 	x |= (rand() & 0xff) << 8;
 	x |= (rand() & 0xff) << 16;
 	x |= (rand() & 0xff) << 24;
 	return (x);
 }
-int get_color(t_gl *gl, int hue, int max)
+
+void	select_hue(int rgb[3], int i, int hue_amount, int color_skew)
+{
+	if (i < (hue_amount / 6))
+		rgb[1] += color_skew / (hue_amount / 6);
+	if (i >= (hue_amount / 6) && i < (2 * hue_amount / 6))
+		rgb[0] -= color_skew / (hue_amount / 6);
+	if (i >= (2 * hue_amount / 6) && i < (3 * hue_amount / 6))
+		rgb[2] += color_skew / (hue_amount / 6);
+	if (i >= (3 * hue_amount / 6) && i < (4 * hue_amount / 6))
+		rgb[1] -= color_skew / (hue_amount / 6);
+	if (i >= (4 * hue_amount / 6) && i < (5 * hue_amount / 6))
+		rgb[0] += color_skew / (hue_amount / 6);
+	if (i >= (5 * hue_amount / 6))
+		rgb[2] -= color_skew / (hue_amount / 6);
+}
+
+int		get_color(t_gl *gl, int hue, int max)
 {
 	int rgb[3];
 	int i;
@@ -37,20 +55,7 @@ int get_color(t_gl *gl, int hue, int max)
 	ft_bzero(rgb, 3 * (sizeof(int)));
 	rgb[0] = (color_skew / (hue_amount / 6)) * (hue_amount / 6);
 	while (++i < hue)
-	{
-		if (i < (hue_amount / 6))
-			rgb[1] += color_skew / (hue_amount / 6);
-		if (i >= (hue_amount / 6) && i < (2 * hue_amount / 6))
-			rgb[0] -= color_skew / (hue_amount / 6);
-		if (i >= (2 * hue_amount / 6) && i < (3 * hue_amount / 6))
-			rgb[2] += color_skew / (hue_amount / 6);
-		if (i >= (3 * hue_amount / 6) && i < (4 * hue_amount / 6))
-			rgb[1] -= color_skew / (hue_amount / 6);
-		if (i >= (4 * hue_amount / 6) && i < (5 * hue_amount / 6))
-			rgb[0] += color_skew / (hue_amount / 6);
-		if (i >= (5 * hue_amount / 6))
-			rgb[2] -= color_skew / (hue_amount / 6);
-	}
+		select_hue(rgb, i, hue_amount, color_skew);
 	return (((rgb[0] & color_skew) << 16) | ((rgb[1] & color_skew) << 8) |
 			(rgb[2] & color_skew));
 }
