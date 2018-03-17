@@ -51,9 +51,12 @@ double change_julia_para_x(int x);
 double change_julia_para_y(int y);
 void julia_set_draw(t_gl *gl, t_canvas *canvas);
 void mandel_set_draw(t_gl *gl, t_canvas *canvas);
+void tricorn_set_draw(t_gl *gl, t_canvas *canvas);
+void burning_ship_set_draw(t_gl *gl, t_canvas *canvas);
 void init_frac(char *fractol_type, t_canvas* canvas);
 void draw_frac(t_gl *gl, t_canvas *canvas);
 void store_pix(t_canvas *canvas, int x, int y, unsigned int c);
 void errorify();
 int		get_color(t_gl *gl,  int hue, int max);
+int generate_random_hex();
 #endif

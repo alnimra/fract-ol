@@ -38,14 +38,20 @@ int key_handler(int key, void *parameters)
 		inputs->shift_key = 1;
 	else
 		inputs->shift_key = 0;
-	if(key == 126)
+	if (key == 126)
 		gl->live_trans[2] -= (0.05 / gl->live_trans[0]);
-	if(key == 125)
+	if (key == 125)
 		gl->live_trans[2] += (0.05 / gl->live_trans[0]);
-	if(key == 123)
+	if (key == 123)
 		gl->live_trans[1] -= (0.05 / gl->live_trans[0]);
-	if(key == 124)
+	if (key == 124)
 		gl->live_trans[1] += (0.05 / gl->live_trans[0]);
+	if (key == 6)
+		gl->live_trans[5]++;
+	if (key == 7)
+		gl->live_trans[5]--;
+	if(key == 12)
+		gl->live_trans[6] = generate_random_hex();
 	draw_frac(gl, canvas);
 	ft_putnbr(key);
 	return (0);
@@ -64,12 +70,14 @@ int mouse_handler(int m_key, int x, int y, void *parameters)
 	if (m_key == 4)
 	{
 		gl->live_trans[1] += ((x - (WIDTH / 2)) / (WIDTH * gl->live_trans[0]));
-		gl->live_trans[2] += ((y - (HEIGHT / 2)) / (HEIGHT * gl->live_trans[0]));
+		gl->live_trans[2] +=
+			((y - (HEIGHT / 2)) / (HEIGHT * gl->live_trans[0]));
 		gl->live_trans[0] *= 0.5;
 	}
 	if (m_key == 5)
 	{
-		gl->live_trans[2] += ((y - (HEIGHT / 2)) / (HEIGHT * gl->live_trans[0]));
+		gl->live_trans[2] +=
+			((y - (HEIGHT / 2)) / (HEIGHT * gl->live_trans[0]));
 		gl->live_trans[1] += ((x - (WIDTH / 2)) / (WIDTH * gl->live_trans[0]));
 		gl->live_trans[0] /= 0.5;
 	}

@@ -20,6 +20,8 @@ SRC		= main.c\
 		  julia.c\
 		  error_handling.c\
 		  color.c\
+		  tricorn.c\
+		  burning_ship.c\
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

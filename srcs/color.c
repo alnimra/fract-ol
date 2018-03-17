@@ -12,10 +12,19 @@
 
 #include "fractol.h"
 
-int		get_color(t_gl *gl, int hue, int max)
+int generate_random_hex()
 {
-	int		rgb[3];
-	int		i;
+int x;
+	x = rand() & 0xff;
+	x |= (rand() & 0xff) << 8;
+	x |= (rand() & 0xff) << 16;
+	x |= (rand() & 0xff) << 24;
+	return (x);
+}
+int get_color(t_gl *gl, int hue, int max)
+{
+	int rgb[3];
+	int i;
 	int hue_amount;
 	int color_skew;
 
@@ -42,5 +51,6 @@ int		get_color(t_gl *gl, int hue, int max)
 		if (i >= (5 * hue_amount / 6))
 			rgb[2] -= color_skew / (hue_amount / 6);
 	}
-	return (((rgb[0] & color_skew) << 16) | ((rgb[1] & color_skew) << 8) | (rgb[2] & color_skew));
+	return (((rgb[0] & color_skew) << 16) | ((rgb[1] & color_skew) << 8) |
+			(rgb[2] & color_skew));
 }
