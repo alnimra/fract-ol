@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fractol.h"
+
 double change_julia_para_x(int x)
 {
 	if (x > 0 && x < WIDTH)
@@ -32,9 +33,8 @@ double change_julia_para_y(int y)
 void julia_set_draw(t_gl *gl, t_canvas *canvas)
 {
 	double n[2];
-	int	iter_num = 120;
 	int	ints[3];
-	double i = gl->live_trans[0];
+	double i;
 	i = 0;
 	ints[0] = -1;
 	while (++ints[0] < HEIGHT)
@@ -50,17 +50,14 @@ void julia_set_draw(t_gl *gl, t_canvas *canvas)
 			n[1] = (ints[0] - HEIGHT / 2) / (0.5 * gl->live_trans[0] * HEIGHT) +
 				   gl->live_trans[2];
 			ints[2] = -1;
-			while (++ints[2] < iter_num && n[0] * n[0] + n[1] * n[1] < 2)
+			while (++ints[2] < gl->live_trans[5] && n[0] * n[0] + n[1] * n[1] < 2)
 			{
 				i = n[0] * n[0] - n[1] * n[1];
 				n[1] = (n[0] + n[0]) * n[1] + gl->live_trans[3];
 				n[0] = i + -0.7 + gl->live_trans[4];
 			}
 			// ft_putnbr(ints[2]);
-			store_pix(canvas, ints[1], ints[0],
-					  ((((ints[2] * 30) % 256) & 0x0FF) << 16) +
-						  ((255 & 0x0FF) << 8) +
-						  (255 * ((ints[2] * 200) < iter_num) & 0x0FF));
+			store_pix(canvas, ints[1], ints[0], get_color(gl, ints[2], gl->live_trans[5]));
 		}
 	}
 }

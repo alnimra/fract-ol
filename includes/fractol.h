@@ -16,14 +16,14 @@
 # include "mlx.h"
 # include <math.h>
 # include <time.h>
-# define WIDTH  600
-# define HEIGHT 600
+# define WIDTH  400
+# define HEIGHT 400
 
 typedef struct		s_gl
 {
 	void	*lib;
 	void	*surf;
-	double live_trans[5];
+	double live_trans[7];
 }					t_gl;
 t_gl				*create_gl(void *lib, void *surf);
 typedef struct		s_canvas
@@ -55,4 +55,5 @@ void init_frac(char *fractol_type, t_canvas* canvas);
 void draw_frac(t_gl *gl, t_canvas *canvas);
 void store_pix(t_canvas *canvas, int x, int y, unsigned int c);
 void errorify();
+int		get_color(t_gl *gl,  int hue, int max);
 #endif

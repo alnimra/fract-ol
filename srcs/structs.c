@@ -24,6 +24,8 @@ t_gl		*create_gl(void *lib, void *surf)
 	tmp->live_trans[2] = 0;
 	tmp->live_trans[3] = 0.27015;
 	tmp->live_trans[4] = 0;
+	tmp->live_trans[5] = 64;
+	tmp->live_trans[6] = 0x0075DD;
 	return (tmp);
 }
 
